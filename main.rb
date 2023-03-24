@@ -35,6 +35,5 @@ class Main
   end
 end
 
-
 main = Main.new
 main.run
