@@ -25,13 +25,21 @@ class App
       puts
       puts 'There are no tasks to delete'
     else
-      puts 'Enter index of task to delete'
-      display_tasks
-      index = gets.chomp.to_i
-      @tasks.delete_at(index - 1)
-      puts
-      puts 'Task has been deleted successfully 💣'
-
+      loop do
+        puts
+        puts 'Enter index of task to delete'
+        display_tasks
+        index = gets.chomp.to_i
+        if index <= @tasks.length && index != 0
+          @tasks.delete_at(index - 1)
+          puts
+          puts 'Task has been deleted successfully 💣'
+          break
+        else
+          puts
+          puts 'Please enter correct index 😒'
+        end
+      end
     end
     puts
   end
@@ -41,13 +49,22 @@ class App
       puts
       puts 'There are no tasks to mark as completed'
     else
-      puts 'Enter index of task to mark as completed'
-      display_tasks
-      index = gets.chomp.to_i
-      task = @tasks[index - 1]
-      task.completed = true
-      puts
-      puts 'Task marked as completed ✔️'
+      loop do
+        puts
+        puts 'Enter index of task to mark as completed'
+        display_tasks
+        index = gets.chomp.to_i
+        if index <= @tasks.length && index != 0
+          task = @tasks[index - 1]
+          task.completed = true
+          puts
+          puts 'Task marked as completed ✔️'
+          break
+        else
+          puts
+          puts 'Please enter correct index 😒'
+        end
+      end
     end
     puts
   end
@@ -59,7 +76,8 @@ class App
       puts
       return
     end
-
+    puts
+    puts 'Tasks: '
     @tasks.each_with_index do |task, index|
       status = task.completed == true ? '✅' : ''
       puts
